@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f5e6d3, #eedcc9);
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #5a4a42;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #5a4a42;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #f8f4f0;
+            color: #333;
+        }
+
+        button {
+            background-color: #a67c52;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate MCQs from Your Text</h1>
+        <form id="mcq-form" action="/generate" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">📄 Upload your document (PDF, TXT, DOCX):</label>
+                <input type="file" name="file" id="file" accept=".txt,.pdf,.docx" required>
+            </div>
+            <div class="form-group">
+                <label for="num_questions">❓ How many questions do you want?</label>
+                <input type="number" name="num_questions" id="num_questions" min="1" required>
+            </div>
+            <button type="button" id="preview-btn">👁️ Preview</button>
+            <button type="submit">🔍 Generate MCQs</button>
+        </form>
+    </div>
+    <footer>
+        MCQ Generator 2025
+    </footer>
+
+    <script>
+        const previewButton = document.getElementById('preview-btn');
+        const fileInput = document.getElementById('file');
+
+        previewButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please upload a file to preview!");
+                return;
+            }
+
+            const fileURL = URL.createObjectURL(file);
+            if (file.type === "application/pdf") {
+                // Open the PDF in a new tab
+                window.open(fileURL, '_blank');
+            } else {
+                alert("Preview is only available for PDF files.");
+            }
+        });
+    </script>
+</body>
+</html>
