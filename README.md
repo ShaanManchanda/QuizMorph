@@ -58,7 +58,8 @@ The application will start on http://127.0.0.1:5000/. Open this URL in your brow
 ## 📂 File Structure
 ```plaintext
 QuizMorph/  
-├── app.py                # Main application logic  
+├── app.py                # Main application logic(mcq generation)
+├── pdf.py                # Main application logic(summary of text)  
 ├── templates/            # HTML templates for the UI  
 ├── static/               # Static assets (CSS, JS)  
 ├── uploads/              # Uploaded files directory  
